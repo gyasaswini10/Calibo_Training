@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCP-PPT-Agent - Create Better PowerPoints-Faster</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">
+                    <h1>MCP-PPT-Agent</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="#home" class="nav-link active">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#generator" class="nav-link">Generator</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#services" class="nav-link">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#testimonials" class="nav-link">Testimonials</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#contact" class="nav-link">Contact</a>
+                    </li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <h1 class="hero-title">Create Better PowerPoints-Faster</h1>
+                    <p class="hero-subtitle">Automated workflows to draft, refine, and polish slide decks with real PPT
+                        output and AI imagery.</p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary" id="getStartedBtn">Get Started</button>
+                        <button class="btn btn-outline" id="learnMoreBtn">Learn More</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PPT Generator Section -->
+        <section id="generator" class="generator">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">AI Presentation Generator</h2>
+                    <p class="section-subtitle">Generate professional PowerPoint presentations with AI-powered research
+                        and design</p>
+                </div>
+
+                <div class="generator-container">
+                    <!-- Simple Generation Mode -->
+                    <div class="generator-card">
+                        <h3>Create Presentation</h3>
+                        <p>Generate a professional presentation with your topic and desired number of slides</p>
+                        <div class="generator-form">
+                            <div class="form-group">
+                                <label for="presentation-topic">Presentation Topic</label>
+                                <input type="text" id="presentation-topic"
+                                    placeholder="e.g., Climate Change, Artificial Intelligence, Space Exploration">
+                            </div>
+                            <div class="form-group">
+                                <label for="presentation-title">Presentation Title (Optional)</label>
+                                <input type="text" id="presentation-title"
+                                    placeholder="Leave blank for auto-generated title">
+                            </div>
+                            <div class="form-group">
+                                <label for="slide-count">Number of Slides</label>
+                                <input type="number" id="slide-count" min="1" max="20" value="6">
+                            </div>
+                            <button class="btn btn-primary" id="generateBtn" style="margin-bottom: 20px;">Generate
+                                Presentation</button>
+
+                            <div class="quick-tools"
+                                style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 10px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px;">
+                                <button class="btn btn-outline"
+                                    style="font-size: 11px; padding: 12px 5px; height: auto;"
+                                    onclick="window.presentationGen.promptAddSlide()">
+                                    <i class="fas fa-plus"></i> Add Slide
+                                </button>
+                                <button class="btn btn-outline"
+                                    style="font-size: 11px; padding: 12px 5px; height: auto;"
+                                    onclick="window.presentationGen.promptDeleteByNumber()">
+                                    <i class="fas fa-trash"></i> Delete Slide
+                                </button>
+                                <button class="btn btn-outline"
+                                    style="font-size: 11px; padding: 12px 5px; height: auto;"
+                                    onclick="window.presentationGen.refreshSlides()">
+                                    <i class="fas fa-info-circle"></i> PPT Info
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Progress Section -->
+                <div id="progress-section" class="progress-section" style="display: none;">
+                    <h3>Generating Your Presentation...</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <div class="progress-steps">
+                        <div class="step" id="step1">
+                            <div class="step-icon">1</div>
+                            <div class="step-text">Initializing Presentation</div>
+                        </div>
+                        <div class="step" id="step2">
+                            <div class="step-icon">2</div>
+                            <div class="step-text">Researching Content</div>
+                        </div>
+                        <div class="step" id="step3">
+                            <div class="step-icon">3</div>
+                            <div class="step-text">Creating Slides</div>
+                        </div>
+                        <div class="step" id="step4">
+                            <div class="step-icon">4</div>
+                            <div class="step-text">Finalizing Design</div>
+                        </div>
+                        <div class="step" id="step5">
+                            <div class="step-icon">5</div>
+                            <div class="step-text">Saving Presentation</div>
+                        </div>
+                    </div>
+                    <div class="progress-message" id="progressMessage">Starting generation...</div>
+                </div>
+
+                <!-- Results Section -->
+                <div id="results-section" class="results-section" style="display: none;">
+                    <h3>Presentation Generated Successfully!</h3>
+                    <div class="results-content">
+                        <div class="presentation-info">
+                            <h4 id="result-title">Presentation Title</h4>
+                            <p id="result-stats">6 slides generated</p>
+                        </div>
+
+                        <!-- PPT Management Lab (Direct Control) -->
+                        <div class="card" style="margin-top: 30px; border-top: 4px solid #76af50;">
+                            <div class="card-header">
+                                <h2 class="card-title">PPT Management Lab</h2>
+                                <p class="card-subtitle">Directly manipulate your PowerPoint files in
+                                    <code>savingfolder_output</code>
+                                </p>
+                            </div>
+
+                            <div class="lab-controls"
+                                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px;">
+                                <div class="lab-option">
+                                    <button class="btn btn-outline w-100"
+                                        onclick="window.presentationGen.promptAddSlide()">
+                                        <i class="fas fa-plus-circle"></i> Add New Slide
+                                    </button>
+                                </div>
+                                <div class="lab-option">
+                                    <button class="btn btn-outline w-100"
+                                        onclick="window.presentationGen.promptDeleteByNumber()">
+                                        <i class="fas fa-trash-alt"></i> Delete Specific Slide
+                                    </button>
+                                </div>
+                                <div class="lab-option">
+                                    <button class="btn btn-outline w-100"
+                                        onclick="window.presentationGen.refreshSlides()">
+                                        <i class="fas fa-info-circle"></i> Get PPT Information
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="path-display"
+                                style="margin-top: 15px; padding: 10px; background: rgba(255,255,255,0.05); border-radius: 4px; font-size: 13px;">
+                                <strong>Active Storage:</strong>
+                                <code>C:\Users\gyasu\Desktop\CAlibo noww\ASSIGNMENT\Client\savingfolder_output\</code>
+                            </div>
+
+                            <!-- Slide list display for the laboratory -->
+                            <div class="slide-management" id="slideManagementLab"
+                                style="margin-top: 20px; display: none;">
+                                <div class="slides-list" id="slidesListLab"></div>
+                            </div>
+                        </div>
+
+                        <div class="download-section">
+                            <button class="btn btn-primary" id="downloadBtn">Download PowerPoint</button>
+                            <button class="btn btn-outline" id="newPresentationBtn">Create New Presentation</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="services">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Services</h2>
+                    <div class="section-filter">
+                        <button class="filter-btn active" data-filter="all">All</button>
+                    </div>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card" data-category="all">
+                        <div class="service-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                                <line x1="16" y1="13" x2="8" y2="13"></line>
+                                <line x1="16" y1="17" x2="8" y2="17"></line>
+                                <polyline points="10 9 9 9 8 9"></polyline>
+                            </svg>
+                        </div>
+                        <h3 class="service-title">Automated Slide Deck Drafting</h3>
+                        <p class="service-description">Turn a topic or outline into a structured, presentation-ready
+                            deck with clear slide flow and key points.</p>
+                        <a href="#generator" class="service-link">Try Now →</a>
+                    </div>
+                    <div class="service-card" data-category="all">
+                        <div class="service-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="service-title">Content & Layout Refinement</h3>
+                        <p class="service-description">Improve wording, hierarchy, and slide layouts for cleaner
+                            storytelling and more professional design.</p>
+                        <a href="#generator" class="service-link">Try Now →</a>
+                    </div>
+                    <div class="service-card" data-category="all">
+                        <div class="service-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                        </div>
+                        <h3 class="service-title">Team Presentation Workflow</h3>
+                        <p class="service-description">Standardize templates, speed up iterations, and streamline
+                            collaboration for consistent decks across teams.</p>
+                        <a href="#generator" class="service-link">Try Now →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="testimonials">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Testimonials</h2>
+                    <div class="section-filter">
+                        <button class="filter-btn active" data-filter="all">All</button>
+                    </div>
+                </div>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card" data-category="all">
+                        <div class="testimonial-content">
+                            <div class="testimonial-text">
+                                "We cut our deck creation time in half. Drafting and cleanup are dramatically faster,
+                                and the slides look consistent across the team."
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-info">
+                                    <h4 class="author-name">Daniel Brooks</h4>
+                                    <p class="author-title">Product Manager</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card" data-category="all">
+                        <div class="testimonial-content">
+                            <div class="testimonial-text">
+                                "MCP-PPT-Agent helped us turn messy notes into a polished pitch deck with better
+                                structure and visuals. It's become part of our weekly workflow."
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-info">
+                                    <h4 class="author-name">Priya Nair</h4>
+                                    <p class="author-title">Marketing Director</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card" data-category="all">
+                        <div class="testimonial-content">
+                            <div class="testimonial-text">
+                                "The layout and messaging improvements are spot on. I can produce training decks quicker
+                                and with a much more professional finish."
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-info">
+                                    <h4 class="author-name">Karen Mitchell</h4>
+                                    <p class="author-title">Training Specialist</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact">
+            <div class="container">
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <h2 class="contact-title">Get in Touch</h2>
+                        <p class="contact-subtitle">Ready to transform your presentation workflow? Contact us today to
+                            learn more.</p>
+
+                        <div class="contact-items">
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path
+                                            d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                                        </path>
+                                        <polyline points="22,6 12,13 2,6"></polyline>
+                                    </svg>
+                                </div>
+                                <div class="contact-details">
+                                    <h3>Email</h3>
+                                    <a href="mailto:coderr1110@gmail.com">coderr1110@gmail.com</a>
+                                </div>
+                            </div>
+
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path
+                                            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                                        </path>
+                                    </svg>
+                                </div>
+                                <div class="contact-details">
+                                    <h3>Phone</h3>
+                                    <a href="tel:999-7777-000">999-7777-000</a>
+                                </div>
+                            </div>
+
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                        <circle cx="12" cy="10" r="3"></circle>
+                                    </svg>
+                                </div>
+                                <div class="contact-details">
+                                    <h3>Address</h3>
+                                    <p>Manhattan, New York, NY, United States</p>
+                                </div>
+                            </div>
+
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <polyline points="12 6 12 12 16 14"></polyline>
+                                    </svg>
+                                </div>
+                                <div class="contact-details">
+                                    <h3>Business Hours</h3>
+                                    <p>Mon-Fri - 08:00-19:00</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-form-wrapper">
+                        <form class="contact-form" id="contactForm">
+                            <h3>Send us a message</h3>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="name">Name</label>
+                                    <input type="text" id="name" name="name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" id="email" name="email" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary" id="contactSubmitBtn">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>MCP-PPT-Agent</h3>
+                    <p>Create Better PowerPoints-Faster</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h4>Services</h4>
+                        <ul>
+                            <li><a href="#generator">Quick Generation</a></li>
+                            <li><a href="#generator">Advanced Generation</a></li>
+                            <li><a href="#generator">Research Mode</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="#testimonials">Testimonials</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 MCP-PPT-Agent. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/script.js"></script>
+</body>
+
+</html>

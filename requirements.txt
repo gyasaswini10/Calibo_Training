@@ -1,0 +1,24 @@
+# AutoPPT Agent Requirements
+# Core MCP and async support
+mcp>=1.0.0
+fastmcp>=0.1.0
+httpx>=0.25.0
+
+# PowerPoint manipulation
+python-pptx>=0.6.21
+
+# Research and content
+wikipedia>=1.4.0
+requests>=2.31.0
+
+# Configuration management
+python-dotenv>=1.0.0
+
+# Development and testing
+pytest>=7.4.0
+pytest-asyncio>=0.21.0
+black>=23.0.0
+flake8>=6.0.0
+
+# Optional: For enhanced image handling
+Pillow>=10.0.0
